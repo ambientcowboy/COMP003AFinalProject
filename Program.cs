@@ -398,6 +398,41 @@ class GameCharacter
         IsActive = isActive;
         CalculateRank();
     }
+
     public void CalculateRank()
-    {}
+    {
+        PowerScore = Level + Health + Mana + Strength + Speed + Defense + SkillPoints + PetCount;
+        if (HasRareItem)
+        {
+            PowerScore += 20;
+        }
+        if (IsMagic)
+        {
+            PowerScore += 10;
+        }
+        if (IsActive)
+        {
+            PowerScore += 5;
+        }
+
+        if ((Level >= 40 && (Strength >= 60 || Mana >= 60)) || (HasRareItem && IsMagic))
+        {
+            if (Defense >= 50 && IsActive)
+            {
+                RankTitle = "Elite";
+            }
+            else
+            {
+                RankTitle = "Advanced";
+            }
+        }
+        else if ((Level >= 20 && Health >= 40) || (IsGuildMember && SkillPoints >= 10))
+        {
+            RankTitle = "Skilled";
+        }
+        else
+        {
+            RankTitle = "Unknown";
+        }
+    }
 }
