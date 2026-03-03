@@ -138,7 +138,184 @@ namespace GameCharacterCreator
             Console.WriteLine("VIEW ALL CHARACTERS");
             if (characters.Count == 0)
             {
-                Console.WriteLine("No Characters Found");}
+                Console.WriteLine("No Characters Found");
+                return;
+            }
+
+            foreach (GameCharacter character in characters)
+            {
+                character.DisplayInfo();
+            }
+        }
+        static void SearchCharacters(List<GameCharacter> characters)
+        {
+            Console.WriteLine();
+            Console.WriteLine("SEARCH CHARACTERS");
+            if (characters.Count == 0)
+            {
+                Console.WriteLine("No Characters Found");
+                return;
+            }
+            string keyword = ReadText("Enter Search Keyword: ").ToLower();
+            bool found = false;
+            foreach (GameCharacter character in characters)
+            {
+                if (character.MatchesSearch(keyword))
+                {
+                    character.DisplayInfo();
+                    found = true;
+                }
+            }
+            if (!found)
+            {
+                Console.WriteLine("No Matching Characters Found");
+            }
+        }
+
+        static void ShowSummary(List<GameCharacter> characters)
+        {
+            Console.WriteLine();
+            Console.WriteLine("SHOW CHARACTER SUMMARY");
+            if (characters.Count == 0)
+            {
+                Console.WriteLine("No Characters Available");
+                return;
+            }
+
+            int totalLevel = 0;
+            int totalGold = 0;
+            int totalPower = 0;
+            int activeCount = 0;
+            int rareItemCount = 0;
+            int highestPower = characters[0].PowerScore;
+            string highestName = characters[0].Name;
+
+            foreach (GameCharacter character in characters)
+            {
+                totalLevel += character.level;
+                totalGold += character.Gold;
+                totalPower += character.PowerScore;
+                if (character.IsActive)
+                {
+                    activeCount++;
+                }
+                if (character.HasRareItem)
+                {
+                    rareItemCount++;
+                }
+
+                if (character.PowerScore > highestPower)
+                {
+                    highestPower = character.PowerScore;
+                    highestName = character.Name;
+                }
+            }
+            double averageLevel = (double)totalLevel / characters.Count;
+            double averagePower = (double)totalPower / characters.Count;
+            Console.WriteLine($"Total Characters: {characters.Count}");
+            Console.WriteLine($"Average Level: {averageLevel:F2}");
+            Console.WriteLine($"Total Gold: {totalGold}");
+            Console.WriteLine($"Average Power Score: {averagePower:F2}");
+            Console.WriteLine($"Total Active Characters: {activeCount}");
+            Console.WriteLine($"Total Rare Items: {rareItemCount}");
+            Console.WriteLine($"Highest Power: {highestPower} ({highestName})");
+        }
+
+        static int ReadIntInRange(string prompt, int min, int max)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                try
+                {
+                    int value = int.Parse(input);
+                    if (value < min || value > max)
+                    {
+                        Console.WriteLine($"Enter a number between {min} and {max}.");
+                    }
+                    else
+                    {
+                        return value;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine($"Invalid Input. Please enter a whole number.");
+                }
+            }
+        }
+
+        static string ReadText(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(input))
+                {
+                    return input.Trim();
+                    
+                }
+                Console.WriteLine("Input cannot be blank");
+            }
+        }
+
+        static bool ReadYesNo(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                if (input != null)
+                {
+                    input = input.Trim().ToLower();
+                    if (input == "y" || input == "yes")
+                    {
+                        return true;
+                    }
+                    else if (input == "n" || input == "no")
+                    {
+                        return false;
+                    }
+                }
+                Console.WriteLine("Please enter yes or no.");
+            }
+        }
+
+        static string GetRace(int choice)
+        {
+            switch (choice)
+            {
+                case 1: return "Human";
+                case 2: return "Elf";
+                case 3: return "Orc";
+                case 4: return "Dwarf";
+                default: return "Unknown";
+            }
+        }
+
+        static string GetClass(int choice)
+        {
+            switch (choice)
+            {
+                case 1: return "Warrior";
+                case 2: return "Mage";
+                case 3: return "Rogue";
+                case 4: return "Archer";
+                default: return "Unknown";
+            }
+        }
+
+        static string GetDifficulty(int choice)
+        {
+            switch (choice)
+            {
+                case 1: return "Easy";
+                case 2: return "Medium";
+                case 3: return "Hard";
+                default: return "Unknown";
+            }
         }
     }
 }
