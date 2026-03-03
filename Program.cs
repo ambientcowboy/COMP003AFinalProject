@@ -319,3 +319,26 @@ namespace GameCharacterCreator
         }
     }
 }
+class GameCharacter
+{
+    public string Name;
+    public string Race;
+    public string CharacterClass;
+    public string Weapon;
+    public string Region;
+    public string GuildName;
+    public string Difficulty;
+    public string RankTitle;
+    public int Id;
+    public int Age;
+    public int Level;
+    public int Health;
+    public int Mana;
+    public int Strength;
+    public int Speed;
+    public int Defense;
+    public int Gold;
+    public int SkillPoints;
+    public int PetCount;
+    public int PowerScore;
+}
