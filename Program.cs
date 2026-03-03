@@ -438,5 +438,36 @@ class GameCharacter
     public void DisplayInfo()
     {
         Console.WriteLine("------------------------");
+        Console.WriteLine($"ID: {Id}");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Race: {Race}");
+        Console.WriteLine($"Character Class: {CharacterClass}");
+        Console.WriteLine($"Weapon: {Weapon}");
+        Console.WriteLine($"Region: {Region}");
+        Console.WriteLine($"Guild Name: {GuildName}");
+        Console.WriteLine($"Difficulty: {Difficulty}");
+        Console.WriteLine($"Rank Title: {RankTitle}");
+        Console.WriteLine($"Age: {Age}");
+        Console.WriteLine($"Level: {Level}");
+        Console.WriteLine($"Health: {Health}");
+        Console.WriteLine($"Mana: {Mana}");
+        Console.WriteLine($"Strength: {Strength}");
+        Console.WriteLine($"Speed: {Speed}");
+        Console.WriteLine($"Defense: {Defense}");
+        Console.WriteLine($"Gold: {Gold}");
+        Console.WriteLine($"Skill Points: {SkillPoints}");
+        Console.WriteLine($"Pet Count: {PetCount}");
+        Console.WriteLine($"IsMagic: {IsMagic}");
+        Console.WriteLine($"HasPet: {HasPet}");
+        Console.WriteLine($"IsGuildMember: {IsGuildMember}");
+        Console.WriteLine($"HasRareItem: {HasRareItem}");
+        Console.WriteLine($"IsActive: {IsActive}");
+        Console.WriteLine("------------------------");
+    }
+
+    public bool MatchesSearch(string keyword)
+    {
+        keyword = keyword.ToLower();
+        return 
     }
 }
