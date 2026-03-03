@@ -341,4 +341,63 @@ class GameCharacter
     public int SkillPoints;
     public int PetCount;
     public int PowerScore;
+    public bool IsMagic;
+    public bool HasPet;
+    public bool IsGuildMember;
+    public bool HasRareItem;
+    public bool IsActive;
+
+    public GameCharacter(
+        int id,
+        string name,
+        string race,
+        string characterClass,
+        string weapon,
+        string region,
+        string guildName,
+        string difficulty,
+        int age,
+        int level,
+        int health,
+        int mana,
+        int strength,
+        int speed,
+        int defense,
+        int gold,
+        int skillPoints,
+        int petCount,
+        bool isMagic,
+        bool hasPet,
+        bool isGuildMember,
+        bool hasRareItem,
+        bool isActive)
+    {
+        Id = id;
+        Name = name;
+        Race = race;
+        CharacterClass = characterClass;
+        Weapon = weapon;
+        Region = region;
+        GuildName = guildName;
+        Difficulty = difficulty;
+        
+        Age = age;
+        Level = level;
+        Health = health;
+        Mana = mana;
+        Strength = strength;
+        Speed = speed;
+        Defense = defense;
+        Gold = gold;
+        SkillPoints = skillPoints;
+        PetCount = petCount;
+        IsMagic = isMagic;
+        HasPet = hasPet;
+        IsGuildMember = isGuildMember;
+        HasRareItem = hasRareItem;
+        IsActive = isActive;
+        CalculateRank();
+    }
+    public void CalculateRank()
+    {}
 }
