@@ -432,7 +432,11 @@ class GameCharacter
         }
         else
         {
-            RankTitle = "Unknown";
+            RankTitle = "Beginner";
         }
+    }
+    public void DisplayInfo()
+    {
+        Console.WriteLine("------------------------");
     }
 }
