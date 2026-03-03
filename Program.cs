@@ -61,6 +61,7 @@ namespace GameCharacterCreator
             string characterClass = GetClass(classChoice);
 
             string weapon = ReadText("Weapon: ");
+            
             Console.WriteLine("Select Region: ");
             Console.WriteLine("1. North");
             Console.WriteLine("2. Desert");
@@ -73,7 +74,7 @@ namespace GameCharacterCreator
             Console.WriteLine("1. Easy");
             Console.WriteLine("2. Medium");
             Console.WriteLine("3. Hard");
-            int difficultyChoice = ReadIntInRange("Difficulty choice: ", 1, 4);
+            int difficultyChoice = ReadIntInRange("Difficulty choice: ", 1, 3);
             string difficulty = GetDifficulty(difficultyChoice);
 
             bool isGuildMember = ReadYesNo("Is in a guild? (y/n): ");
@@ -192,7 +193,7 @@ namespace GameCharacterCreator
 
             foreach (GameCharacter character in characters)
             {
-                totalLevel += character.level;
+                totalLevel += character.Level;
                 totalGold += character.Gold;
                 totalPower += character.PowerScore;
                 if (character.IsActive)
@@ -303,6 +304,18 @@ namespace GameCharacterCreator
                 case 2: return "Mage";
                 case 3: return "Rogue";
                 case 4: return "Archer";
+                default: return "Unknown";
+            }
+        }
+
+        static string GetRegion(int choice)
+        {
+            switch (choice)
+            {
+                case 1: return "North";
+                case 2: return "Desert";
+                case 3: return "Forest";
+                case 4: return "Coast";
                 default: return "Unknown";
             }
         }
@@ -468,6 +481,13 @@ class GameCharacter
     public bool MatchesSearch(string keyword)
     {
         keyword = keyword.ToLower();
-        return 
+        return Name.ToLower().Contains(keyword)
+               || Race.ToLower().Contains(keyword)
+               || CharacterClass.ToLower().Contains(keyword)
+               || Weapon.ToLower().Contains(keyword)
+               || Region.ToLower().Contains(keyword)
+               || GuildName.ToLower().Contains(keyword)
+               || Difficulty.ToLower().Contains(keyword)
+               || RankTitle.ToLower().Contains(keyword);
     }
 }
